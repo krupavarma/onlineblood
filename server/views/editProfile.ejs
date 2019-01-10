@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A layout example that shows off a responsive product landing page.">
+    <link rel="shortcut icon" type="image/x-icon" href="images/blood-drop-icon.png" />
+    <title>BloodBank.com &ndash; Edit Profile</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+    <!--<![endif]-->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="/stylesheets/marketing-old-ie.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="/stylesheets/marketing.css">
+    <!--<![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <style>
+        .normal-layout
+        {
+            background-color:#009688;/*#3F51B5;*/
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    function checkFirstName()
+    {
+        var firstname=document.getElementById("first-name").value;
+        if(firstname=="")
+            alert("First Name cannot be empty.");
+        else if(/[^a-zA-Z\s]/.test(firstname)==true)
+            alert("Incorrect First Name:"+document.getElementById("first-name").value);
+    }
+    function checkLastName()
+    {
+        var lastname=document.getElementById("last-name").value;
+        if(lastname="")
+            alert("Last Name cannot be empty.");
+        if(/[^a-zA-Z\s]/.test(lastname)==true)
+            alert("Incorrect Last Name:"+document.getElementById("last-name").value);
+    }
+    function checkAge()
+    {
+        var ageVal=document.getElementById("age").value;
+        if(ageVal=="")
+            alert("Age cannot be empty.");
+        else if(ageVal<5 || ageVal>85)
+            alert("You are too young or too old.");
+        if(/[^\d]/.test(ageVal)==true)
+            alert("Incorrect Age:"+document.getElementById("age").value);
+    }
+    function checkPhone()
+    {
+        var phoneNum=document.getElementById("phone").value;
+        if(phoneNum=="")
+            alert("Contact number must be provided.")
+        if(/[7-9][0-9]{9}/.test(phoneNum)==false)
+            alert("Incorrect Contact Number:"+document.getElementById("phone").value);
+    }
+    function checkEmail()
+    {
+        var mail=document.getElementById("email").value;
+        if(mail=="")
+            alert("Email Address cannot be empty.");
+        if(/^[a-zA-Z0-9.-_]+@[a-zA-z.]+\.[a-zA-Z]{2,5}$/.test(mail)==false)
+            alert("Incorrect Email Address:"+document.getElementById("mail").value);
+    }
+    function checkPassWord()
+    {
+        var pword=document.getElementById("password").value;
+        var len=pword.length;
+        if(pword="")
+            alert("Password cannot be empty.");
+        else if(len<8)
+            alert("Password cannot be less than 8 characters.");
+        else if(len>50)
+            alert("Password cannot be more than 50 characters.");
+        /*else if(/[a-z]+/.test(pword)!=true)
+         alert("Password must have atleast one lower case character.");
+         else if(/[A-Z]+/.test(pword)!=true)
+         alert("Password must have atleast one upper case character.");
+         else if(/[0-9]+/.test(pword)!=true)
+         alert("Password must have atleast digit.");
+         else if(/[$@$!%*?&]+/.test(pword)!=true)
+         alert("Password must have aleast one special character.");
+         //else if(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/.test(pword)==false)	*/
+        else if(/[A-Za-z\d$@$!%*?&]{8,}/.test(pword)==true)
+            alert("Password must have aleast one lower, upper, special characters and one digit.");
+    }
+    function checkConfirmPassword()
+    {
+        if(document.getElementById("password").value!=document.getElementById("confirm-password").value)
+            alert("Password did not match.");
+    }
+
+</script>
+
+
+<div class="header">
+    <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+        <a class="pure-menu-heading" href="/">BloodBank.com</a>
+        <ul class="pure-menu-list">
+            <li class="pure-menu-item"><a href="/index" class="pure-menu-link">Home</a></li>
+            <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Edit Profile</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="content normal-layout">
+    <h1 class="content-head is-center">Edit Your Profile Here</h1>
+    <div class="pure-g">
+        <div class="l-box-lrg pure-u-1 pure-u-md-1-5">
+            <img src="images/profilepics/p1.jpg">
+        </div>
+        <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
+            <form class="pure-form pure-form-stacked" method="post" action="/profilePage">
+                <fieldset>
+
+                    <div class="pure-control-group">
+                        <label for="first-name">First Name*</label>
+                        <input id="first-name" type="text" placeholder="First Name" onblur="checkFirstName()" required>
+                    </div>
+
+                    <div class="pure-control-group">
+                        <label for="last-name">Last Name*</label>
+                        <input id="last-name" type="text" placeholder="Last Name" onblur="checkLastName()" required>
+                    </div>
+
+                    <div class="pure-control-group">
+                        <label for="age">Age*</label>
+                        <input id="age" type="text" placeholder="Correct age please." onblur="checkAge()" required>
+                    </div>
+
+                    <div class="pure-control-group">
+                        <label for="gender">Gender*</label>
+                        <select id="gender" class="pure-input-1-2">
+                            <option value="m">Male</option>
+                            <option value="f">Female</option>
+                            <option value="o">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="pure-control-group">
+                        <label for="blood-group">Blood Group*</label>
+                        <select id="blood-group" class="pure-input-1-2">
+                            <option value="abp">AB+</option>
+                            <option value="abn">AB-</option>
+                            <option value="ap">A+</option>
+                            <option value="an">A-</option>
+                            <option value="bp">B+</option>
+                            <option value="bn">B-</option>
+                            <option value="op">O+</option>
+                            <option value="on">O-</option>
+                        </select>
+                    </div>
+
+                    <div class="pure-control-group">
+                        <label for="phone">Contact Number*</label>
+                        <input id="phone" type="text" placeholder="Correct Number please." onblur="checkPhone()" required>
+                    </div>
+
+                    <div class="pure-control-group">
+                        <label for="email">Email Address*</label>
+                        <input id="email" type="email" placeholder="Email Address" onblur="checkEmail()" required>
+                    </div>
+
+                    <div class="pure-control-group">
+                        <label for="password">Password*</label>
+                        <input id="password" type="password" placeholder="Password" onblur="checkPassWord()" required>
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="confirm-password">Confirm Password*</label>
+                        <input id="confirm-password" type="password" placeholder="Re-enter Password" onblur="checkConfirmPassword()" required>
+                    </div>
+                    <div class="pure-controls">
+                        <button type="submit" class="pure-button pure-button-primary" value=" Update Details">Update Details</button>
+                        <button type="button" class="pure-button pure-button-primary" value=" Back">Back</button>
+                    </div>
+                    <div>
+                        <p><b>NOTE:</b>all <b>*</b> fields are mandatory.</p>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+
+    </div>
+</div>
+<div class="footer l-box is-center">
+    Copyrights Reserved © A Website by Sai Nishanth.
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("button").click(function() {
+            var s="Are yoy sure? You have choose to "+$(this).attr("value");
+            alert(s);
+            //jAlert('This is a custom alert box', 'Alert Dialog');
+        });
+    });
+</script>
+
+</body>
+</html>
